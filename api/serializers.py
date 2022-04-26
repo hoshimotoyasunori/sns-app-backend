@@ -11,13 +11,12 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwards = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-
-        user = get_user_model().objects.object.create_user(**validated_data)
+        user = get_user_model().objects.create_user(**validated_data)
         return user
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    credated_at = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
+    created_at = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
     class Meta:
         model = Profile
@@ -26,7 +25,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    credated_at = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
+    created_at = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
     class Meta:
         model = Post
@@ -35,7 +34,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    credated_at = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
     class Meta:
         model = Comment

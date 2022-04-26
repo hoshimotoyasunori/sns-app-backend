@@ -3,8 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.conf import settings
 
 # アバター画像
-
-
 def upload_avatar_path(instance, filename):
     ext = filename.split('.')[-1]
     return '/'.join([
@@ -16,8 +14,6 @@ def upload_avatar_path(instance, filename):
     ])
 
 # ポストされた画像
-
-
 def upload_post_path(instance, filename):
     ext = filename.split('.')[-1]
     return '/'.join([
@@ -36,7 +32,7 @@ class UserManager(BaseUserManager):
             raise ValueError('email is must')
         user = self.model(email=self.normalize_email(email))
         user.set_password(password)
-        user.save(using=self.db)
+        user.save(using=self._db)
         return user
 
     # スーパーユーザーの作成
@@ -53,7 +49,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=50, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    abjects = UserManager()
+
+    objects = UserManager()
     USERNAME_FIELD = 'email'
 
     def __str__(self):
