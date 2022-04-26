@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
-from tkinter import N
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -40,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 追加
-    'restframework',
+    'rest_framework',
     'djoser',
     'api.apps.ApiConfig',
     'corsheaders',
@@ -107,7 +106,7 @@ SIMPLE_JWT = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -145,7 +144,7 @@ USE_L10N = True
 USE_TZ = True
 
 # 追加
-AUTH_USERMODEL = 'api.User'
+AUTH_USER_MODEL = 'api.User'
 # ///
 
 # Static files (CSS, JavaScript, Images)

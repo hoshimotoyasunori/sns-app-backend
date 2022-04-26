@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
-from matplotlib.pyplot import title
 
 # アバター画像
 
@@ -65,7 +64,7 @@ class Profile(models.Model):
     nickName = models.CharField(max_length=20)
     userProfile = models.OneToOneField(
         settings.AUTH_USER_MODEL,
-        rerated_name="userProfile",
+        related_name="userProfile",
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -83,7 +82,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     userPost = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        rerated_name='userPost',
+        related_name='userPost',
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -106,7 +105,7 @@ class Comment(models.Model):
     text = models.CharField(max_length=100)
     userComment = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        rerated_name='userComment',
+        related_name='userComment',
         on_delete=models.CASCADE
     )
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
